@@ -1,35 +1,51 @@
-import { Typography, Button } from "@material-tailwind/react";
+import { Typography, IconButton } from "@material-tailwind/react";
 
-const LINKS = ["Home", "About Us", "Blog", "Service"];
+const LINKS = ["Company", "About Us", "Team", "Product", "Blog", "Pricing"];
 const CURRENT_YEAR = new Date().getFullYear();
+
 
 export function Footer() {
   return (
-    <footer className="mt-10 px-8 pt-20">
+    <footer className="pb-10 px-8 pt-20">
       <div className="container mx-auto">
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-y-4 border-t border-gray-200 py-6 md:justify-between">
-          <Typography className="text-center font-normal !text-gray-700">
-            &copy; {CURRENT_YEAR} Creative Tim™. All Rights Reserved.
-          </Typography>
-          <ul className="flex gap-8 items-center">
-            {LINKS.map((link) => (
+        <div className="mt-16 grid items-center justify-center gap-10">
+          <ul className="flex flex-wrap justify-center gap-8 items-center">
+            {LINKS.map((link, idx) => (
               <li key={link}>
                 <Typography
                   as="a"
                   href="#"
-                  variant="small"
-                  className="font-normal text-gray-700 hover:text-gray-900 transition-colors"
+                  className={`py-1 font-normal !text-gray-700 transition-colors hover:!text-gray-900 ${
+                    idx === LINKS.length - 1 ? "pl-2" : "px-2"
+                  }`}
                 >
                   {link}
                 </Typography>
               </li>
             ))}
-            <Button color="gray">subscribe</Button>
           </ul>
+          <div className="gap-2 lg:flex items-center justify-center">
+            <IconButton variant="text" color="gray" size="sm">
+              <i className="fa-brands fa-twitter text-lg" />
+            </IconButton>
+            <IconButton variant="text" color="gray" size="sm">
+              <i className="fa-brands fa-youtube text-lg" />
+            </IconButton>
+            <IconButton variant="text" color="gray" size="sm">
+              <i className="fa-brands fa-instagram text-lg" />
+            </IconButton>
+            <IconButton variant="text" color="gray" size="sm">
+              <i className="fa-brands fa-github text-lg" />
+            </IconButton>
+          </div>
+          <Typography className="text-center font-normal !text-gray-700">
+            &copy; {CURRENT_YEAR} Creative Tim™. All Rights Reserved.
+          </Typography>
         </div>
       </div>
     </footer>
   );
 }
+
 
 export default Footer;
