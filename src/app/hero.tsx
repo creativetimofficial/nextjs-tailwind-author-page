@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Button, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
-
 function Hero() {
   return (
     <header className="bg-gray-900 mb-96">
@@ -13,7 +12,7 @@ function Hero() {
           width={1024}
           height={1024}
           alt="avatar"
-          src="/image/avatar1.jpg"
+          src="/nextjs-tailwind-author-page/image/avatar1.jpg"
           className="w-40 rounded-xl"
         />
         <div className="flex mt-16 justify-between">
