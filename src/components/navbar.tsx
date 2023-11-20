@@ -6,18 +6,22 @@ import {
   IconButton,
   Typography,
 } from "@material-tailwind/react";
-import {
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-
-const NAV_MENU = ["Home", "About Us", "Contact Us"];
-
-function NavItem({ children }: { children: React.ReactNode }) {
+interface NavItemProps {
+  children: React.ReactNode;
+  href?: string;
+}
+function NavItem({ children, href }: NavItemProps) {
   return (
     <li>
-      <Typography as="a" href="#" variant="small" className="font-medium">
+      <Typography
+        as="a"
+        href={href || "#"}
+        target={href ? "_blank" : "_self"}
+        variant="small"
+        className="font-medium"
+      >
         {children}
       </Typography>
     </li>
@@ -26,6 +30,7 @@ function NavItem({ children }: { children: React.ReactNode }) {
 
 export function Navbar() {
   const [open, setOpen] = React.useState(false);
+  const [isScrolling, setIsScrolling] = React.useState(false);
 
   function handleOpen() {
     setOpen((cur) => !cur);
@@ -38,25 +43,52 @@ export function Navbar() {
     );
   }, []);
 
+  React.useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 0) {
+        setIsScrolling(true);
+      } else {
+        setIsScrolling(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <MTNavbar
       fullWidth
       shadow={false}
-      color="transparent"
-      className="absolute z-50 border-0"
+      blurred={false}
+      color={isScrolling ? "white" : "transparent"}
+      className="fixed top-0 z-50 border-0"
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Typography variant="h6">Material Design</Typography>
-        <ul className="ml-10 hidden items-center gap-6 lg:flex">
+        <Typography variant="h6" color={isScrolling ? "blue-gray" : "white"}>
+          Material Tailwind
+        </Typography>
+        <ul
+          className={`ml-10 hidden items-center gap-6 lg:flex ${
+            isScrolling ? "text-gray-900" : "text-white"
+          }`}
+        >
           <NavItem>Home</NavItem>
           <NavItem>About Us</NavItem>
           <NavItem>Contact Us</NavItem>
+          <NavItem href="https://www.material-tailwind.com/docs/react/installation">
+            Docs
+          </NavItem>
+          <NavItem href="https://www.material-tailwind.com/blocks">
+            Blocks
+          </NavItem>
         </ul>
         <div className="hidden items-center lg:flex">
-          <Button variant="text" color="white">
+          <Button variant="text" color={isScrolling ? "gray" : "white"}>
             Log in
           </Button>
-          <Button color="white">contact</Button>
+          <Button color={isScrolling ? "gray" : "white"}>contact</Button>
         </div>
         <IconButton
           variant="text"
@@ -77,6 +109,12 @@ export function Navbar() {
             <NavItem>Home</NavItem>
             <NavItem>About Us</NavItem>
             <NavItem>Contact Us</NavItem>
+            <NavItem href="https://www.material-tailwind.com/docs/react/installation">
+              Docs
+            </NavItem>
+            <NavItem href="https://www.material-tailwind.com/blocks">
+              Blocks
+            </NavItem>
           </ul>
           <div className="mt-6 flex items-center gap-4">
             <Button variant="text" color="gray">
@@ -89,6 +127,5 @@ export function Navbar() {
     </MTNavbar>
   );
 }
-
 
 export default Navbar;

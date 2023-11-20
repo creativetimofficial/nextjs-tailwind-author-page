@@ -3,7 +3,6 @@ import { Typography, IconButton } from "@material-tailwind/react";
 const LINKS = ["Company", "About Us", "Team", "Product", "Blog", "Pricing"];
 const CURRENT_YEAR = new Date().getFullYear();
 
-
 export function Footer() {
   return (
     <footer className="pb-10 px-8 pt-20">
@@ -39,13 +38,20 @@ export function Footer() {
             </IconButton>
           </div>
           <Typography className="text-center font-normal !text-gray-700">
-            &copy; {CURRENT_YEAR} Creative Tim™. All Rights Reserved.
+            &copy; {CURRENT_YEAR} Made with{" "}
+            <a href="https://www.material-tailwind.com" target="_blank">
+              Material Tailwind
+            </a>{" "}
+            by{" "}
+            <a href="https://www.creative-tim.com" target="_blank">
+              Creative Tim
+            </a>
+            .
           </Typography>
         </div>
       </div>
     </footer>
   );
 }
-
 
 export default Footer;
