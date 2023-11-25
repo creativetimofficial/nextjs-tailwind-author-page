@@ -4,6 +4,7 @@ const nextConfig = {
   assetPrefix: "/nextjs-tailwind-author-page/",
   basePath: "/nextjs-tailwind-author-page",
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
