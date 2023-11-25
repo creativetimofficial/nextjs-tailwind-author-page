@@ -80,15 +80,14 @@ export function Navbar() {
           <NavItem href="https://www.material-tailwind.com/docs/react/installation">
             Docs
           </NavItem>
-          <NavItem href="https://www.material-tailwind.com/blocks">
-            Blocks
-          </NavItem>
         </ul>
-        <div className="hidden items-center lg:flex">
+        <div className="hidden items-center lg:flex gap-2">
           <Button variant="text" color={isScrolling ? "gray" : "white"}>
             Log in
           </Button>
-          <Button color={isScrolling ? "gray" : "white"}>contact</Button>
+          <a href="https://www.material-tailwind.com/blocks" target="_blank">
+            <Button color={isScrolling ? "gray" : "white"}>Blocks</Button>
+          </a>
         </div>
         <IconButton
           variant="text"
@@ -112,15 +111,14 @@ export function Navbar() {
             <NavItem href="https://www.material-tailwind.com/docs/react/installation">
               Docs
             </NavItem>
-            <NavItem href="https://www.material-tailwind.com/blocks">
-              Blocks
-            </NavItem>
           </ul>
           <div className="mt-6 flex items-center gap-4">
             <Button variant="text" color="gray">
               Log in
             </Button>
-            <Button color="gray">contact</Button>
+            <a href="https://www.material-tailwind.com/blocks" target="_blank">
+              <Button color="gray">Blocks</Button>
+            </a>
           </div>
         </div>
       </Collapse>
